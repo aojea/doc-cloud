@@ -9,7 +9,7 @@
  <title>Backup/Restore Scheduler</title>
 <!---->
  <section>
-  <title>Freezer (backup/resore service) Scheduler Overview</title>
+  <title>Freezer (backup/restore service) Scheduler Overview</title>
   <para>
    This document explains, through examples, how to set up backup and restore
    jobs using the backup/restore service scheduler (referred to as Freezer
@@ -191,9 +191,9 @@
                     {
                     "freezer_action": {
                     "action": "restore",
-                    "restore_abs_path": "/var/lib/mysql",
+                    "restore_abs_path": "/var/lib/mariadb",
                     "hostname": "test_machine_1",
-                    "backup_name": "freezer-db-mysql",
+                    "backup_name": "freezer-db-mariadb",
                     "container": "freezer_backup_devstack_1"
                     },
                     "max_retries": 5,
@@ -201,12 +201,12 @@
                     "mandatory": true
                     }
                     ],
-                    "description": "mysql test restore"
+                    "description": "mariadb test restore"
                     }</screen>
   <para>
    Create the job like so:
   </para>
-<screen>freezer-scheduler job-create -c &lt;client_id&gt; --file job-restore-mysql.conf</screen>
+<screen>freezer-scheduler job-create -c &lt;client_id&gt; --file job-restore-mariadb.conf</screen>
  </section>
  <section>
   <title>Differential Backup and Restore</title>
@@ -226,10 +226,10 @@
                 "job_actions": [
                 {
                 "freezer_action": {
-                "mode" : "mysql",
-                "mysql_conf" : "/etc/mysql/debian.cnf",
-                "path_to_backup": "/var/lib/mysql/",
-                "backup_name": "freezer-db-mysql",
+                "mode" : "mariadb",
+                "mariadb_conf" : "/etc/mariadb/debian.cnf",
+                "path_to_backup": "/var/lib/mariadb/",
+                "backup_name": "freezer-db-mariadb",
                 "snapshot": true,
                 "always_level": 1,
                 "max_priority": true,
@@ -243,7 +243,7 @@
                 ],
                 "job_schedule" : {
                 },
-                "description": "mysql backup"
+                "description": "mariadb backup"
                 }</screen>
   <para>
    To create the job:
@@ -261,9 +261,9 @@
                     {
                     "freezer_action": {
                     "action": "restore",
-                    "restore_abs_path": "/var/lib/mysql",
+                    "restore_abs_path": "/var/lib/mariadb",
                     "hostname": "test_machine_1",
-                    "backup_name": "freezer-db-mysql",
+                    "backup_name": "freezer-db-mariadb",
                     "container": "freezer_backup_devstack_1_alwayslevel"
                     },
                     "max_retries": 5,
@@ -271,7 +271,7 @@
                     "mandatory": true
                     }
                     ],
-                    "description": "mysql test restore"
+                    "description": "mariadb test restore"
                     }</screen>
   <para>
    To create the job:
